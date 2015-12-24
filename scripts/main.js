@@ -5,9 +5,6 @@ app.controller('MainController', function ($scope, $timeout, $q, $log) {
 
     $scope.simulateQuery = false;
 
-    // list of `state` value/display objects
-
-
     $scope.newState = function (state) {
         alert("Sorry! You'll need to create a Constituion for " + state + " first!");
     };
