@@ -13,7 +13,7 @@ app.controller('MainController', function ($scope, $timeout, $q, $log) {
     };
 
     $scope.querySearch = function (query) {
-        var results = query ? $scope.states.filter(createFilterFor(query)) : $scope.states,
+        var results = query ? $scope.loadAll().filter(createFilterFor(query)) : $scope.loadAll(),
             deferred;
         if ($scope.simulateQuery) {
             deferred = $q.defer();
@@ -37,7 +37,7 @@ app.controller('MainController', function ($scope, $timeout, $q, $log) {
     /**
      * Build `states` list of key/value pairs
      */
-    loadAll = function () {
+    $scope.loadAll = function () {
         var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
               Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
               Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
@@ -53,10 +53,9 @@ app.controller('MainController', function ($scope, $timeout, $q, $log) {
             };
         });
     };
-    $scope.states = loadAll();
-    /**
-     * Create filter function for a query string
-     */
+
+    //$scope.states = loadAll();
+
     $scope.createFilterFor = function (query) {
         var lowercaseQuery = angular.lowercase(query);
 
