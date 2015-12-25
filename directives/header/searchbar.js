@@ -1,7 +1,6 @@
 /**
  * Created by tomer on 12/24/15.
  */
-
 app.controller('SearchController', function ($scope) {
 
     $scope.states = loadAll();
@@ -35,4 +34,9 @@ app.controller('SearchController', function ($scope) {
         };
 
     }
+});
+app.directive('searchBar', function () {
+    return {
+        templateUrl: 'directives/header/searchbar.html'
+    };
 });
