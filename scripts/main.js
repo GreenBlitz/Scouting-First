@@ -1,5 +1,5 @@
 app.controller('MainController', function ($scope,$rootScope) {
-    $scope.buttons = [
+    $rootScope.buttons = [
         {
             name: "Home",
             icon: "home",
@@ -10,6 +10,11 @@ app.controller('MainController', function ($scope,$rootScope) {
             name: "Table",
             icon: "table",
             view: "table"
+        },
+        {
+            name: "Search",
+            icon: "search",
+            view: "search"
         },
         {
             name: "Settings",
