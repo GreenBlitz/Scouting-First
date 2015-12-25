@@ -2,7 +2,6 @@
  * Created by tomer on 12/24/15.
  */
 app.controller('SearchController', function ($scope, $rootScope, $http, $filter) {
-
     $scope.teams = undefined;
     for (var i = 0; i < 12; i++) {
         loadAll(i)
@@ -17,7 +16,8 @@ app.controller('SearchController', function ($scope, $rootScope, $http, $filter)
             }
         }).then(function successCallback(response) {
             for (var i = 0; i < response.data.length; i++) {
-                if(!$scope.isStringEmpty(response.data[i].nickname)){
+
+                if (!$scope.isStringEmpty(response.data[i].nickname)) {
                     response.data[i].name = response.data[i].nickname;
                 }
                 if ($scope.isStringEmpty(response.data[i].name)) {

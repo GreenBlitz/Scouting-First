@@ -1,6 +1,6 @@
 <div ng-controller="SearchController">
     <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-selected-item-change="search($root.buttons[2])"
-                     md-items="item in teams | filter : searchText" md-item-text="item.nickname"
+                     md-items="item in teams | filter : searchText|filter : $root.country" md-item-text="item.nickname"
                      placeholder="What team are you looking for">
         <span md-highlight-text="searchText">#{{item.team_number}}  {{nameOrNickname(item)}}</span>
     </md-autocomplete>

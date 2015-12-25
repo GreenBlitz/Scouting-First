@@ -23,5 +23,6 @@ app.controller('MainController', function ($scope,$rootScope) {
             settings : true
         }
     ];
+    $rootScope.country = "Israel";
     $rootScope.view = "views/"+$scope.buttons[0].view+".html";
 });
