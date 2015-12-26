@@ -4,6 +4,12 @@
     right: 2vw;
 }
 
+.add-fab-gt-sm{
+    position: fixed;
+    top: 95px;
+    right: 2vw;
+}
+
 .md-sidenav-left {
     height: 87.4vh;;
     width: 4.6vw;
