@@ -6,7 +6,7 @@
                 <md-subheader class="md-no-sticky">Search Settings</md-subheader>
                 <md-divider></md-divider>
                 <md-list-item>
-                    <md-switch ng-click="$root.loadData()" ng-model="$root.limitSearch"
+                    <md-switch ng-change="onLimitSearchChange($root.limitSearch)" ng-model="$root.limitSearch"
                                aria-label="Limit search for country">
                         Limit search <span ng-show="$root.limitSearch">to</span> {{$root.country}}
                     </md-switch>
