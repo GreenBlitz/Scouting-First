@@ -17,10 +17,10 @@ app.controller('SearchController', function ($scope, $rootScope, $http, $filter)
         }).then(function successCallback(response) {
             for (var i = 0; i < response.data.length; i++) {
 
-                if (!$scope.isStringEmpty(response.data[i].nickname)) {
+                if (!$rootScope.isStringEmpty(response.data[i].nickname)) {
                     response.data[i].name = response.data[i].nickname;
                 }
-                if ($scope.isStringEmpty(response.data[i].name)) {
+                if ($rootScope.isStringEmpty(response.data[i].name)) {
                     console.log("remove " + i);
                     response.data.splice(i, 1);
                 }
@@ -45,12 +45,8 @@ app.controller('SearchController', function ($scope, $rootScope, $http, $filter)
         return $filter('filter')($scope.teams, text)
     };
 
-    $scope.isStringEmpty = function (string) {
-        return string == null || !string || 0 === string.length
-    };
-
     $scope.nameOrNickname = function (item) {
-        return $scope.isStringEmpty(item.nickname) ? item.name : item.name
+        return $rootScope.isStringEmpty(item.nickname) ? item.name : item.name
     };
 
     function addArrayTo(arr1, arr2) {

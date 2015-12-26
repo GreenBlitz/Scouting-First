@@ -1,4 +1,4 @@
-app.controller('MainController', function ($scope,$rootScope) {
+app.controller('MainController', function ($scope, $rootScope) {
     $rootScope.buttons = [
         {
             name: "Home",
@@ -20,9 +20,12 @@ app.controller('MainController', function ($scope,$rootScope) {
             name: "Settings",
             icon: "settings",
             view: "settings",
-            settings : true
+            settings: true
         }
     ];
     $rootScope.country = "Israel";
-    $rootScope.view = "views/"+$scope.buttons[0].view+".html";
+    $rootScope.view = "views/" + $scope.buttons[0].view + ".html";
+    $rootScope.isStringEmpty = function (string) {
+        return string == null || !string || 0 === string.length
+    };
 });
