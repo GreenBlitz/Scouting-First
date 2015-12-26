@@ -8,6 +8,7 @@ app.controller('NavCtrl', function ($scope, $mdSidenav, $rootScope, $log) {
             $rootScope.buttons[i].current = false;
         }
         button.current = true;
+        $rootScope.toggleSideNav();
     };
     $rootScope.toggleSideNav = function () {
         $mdSidenav('sideNav').toggle();
