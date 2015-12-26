@@ -3,10 +3,8 @@
  */
 var app = angular.module('ScoutingFirst', ['ngMaterial']).config(function ($mdThemingProvider) {
 
-        var primary = $mdThemingProvider.extendPalette('green', {
-        });
-        var accent = $mdThemingProvider.extendPalette('orange', {
-        });
+        var primary = $mdThemingProvider.extendPalette('green', {});
+        var accent = $mdThemingProvider.extendPalette('orange', {});
 
         $mdThemingProvider.definePalette('primary', primary);
         $mdThemingProvider.definePalette('accent', accent);

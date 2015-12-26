@@ -1,7 +1,9 @@
 <md-sidenav class="md-sidenav-left nav-wrapper" md-component-id="sideNav" md-is-locked-open="$mdMedia('gt-md')">
     <md-content ng-controller="NavCtrl" class="nav">
-        <nav-button ng-repeat="button in buttons" icon="button.icon" current="button.current" ng-class="{'settings_button' : button.settings}"
-                    ng-click="$root.changeView(button)" settings="button.settings" name="button.name" layout="row" layout-align="center "
+        <nav-button ng-repeat="button in buttons" icon="button.icon" current="button.current"
+                    ng-class="{'settings_button' : button.settings}"
+                    ng-click="$root.changeView(button)" settings="button.settings" name="button.name" layout="row"
+                    layout-align="center "
                     flex="100"></nav-button>
     </md-content>
 </md-sidenav>
