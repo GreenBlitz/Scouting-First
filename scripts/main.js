@@ -4,7 +4,6 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
         }, function (big) {
             $rootScope.bigScreen = big;
         });
-    $scope.testSize()
         $rootScope.buttons = [
             {
                 name: "Home",
