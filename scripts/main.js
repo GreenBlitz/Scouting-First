@@ -1,4 +1,10 @@
-app.controller('MainController', function ($scope, $rootScope, $http) {
+app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) {
+    $rootScope.$watch(function () {
+            return $mdMedia('gt-sm');
+        }, function (big) {
+            $rootScope.bigScreen = big;
+        });
+    $scope.testSize()
         $rootScope.buttons = [
             {
                 name: "Home",
