@@ -49,3 +49,12 @@ body {
     width: 100%;
     height: 87.4vh;
 }
+
+.settings_wrapper{
+
+}
+.big_settings_wrapper{
+    overflow:hidden;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

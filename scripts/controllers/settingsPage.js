@@ -1,7 +1,11 @@
 /**
  * Created by tomer on 12/26/15.
  */
-app.controller('SettingsController', function ($scope, $rootScope,$log) {
+app.controller('SettingsController', function ($scope, $rootScope, $log) {
+    if ($rootScope.bigScreen) {
+
+    }
+
     if ($rootScope.limitSearch) {
         $rootScope.country = "Israel";
     }
@@ -9,7 +13,7 @@ app.controller('SettingsController', function ($scope, $rootScope,$log) {
         $rootScope.country = null;
     }
     $scope.onLimitSearchChange = function (cbState) {
-        console.log("cbstate" +cbState)
+        console.log("cbstate" + cbState);
         $rootScope.country = cbState ? "Israel" : null;
         $rootScope.loadData()
     };
