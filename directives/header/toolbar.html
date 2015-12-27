@@ -1,9 +1,19 @@
-<md-toolbar>
-    <div class="md-toolbar-tools">
-        <md-button  flex="10" flex-gt-md="5" class="md-icon-button" ng-click="$root.toggleSideNav()">
+<md-toolbar ng-class="($root.bigScreen) ? 'md-tall' : ''" layout-align="center center">
+    <!--Show this if on mobile-->
+    <div class="md-toolbar-tools" ng-show="!$root.bigScreen">
+        <md-button flex="15" flex-gt-xs="10" class="md-icon-button" ng-click="$root.toggleSideNav()"
+                   aria-label="Navigation">
             <md-icon md-svg-icon="res/menu.svg"></md-icon>
         </md-button>
-        <search-bar flex="80" flex-gt-md="80" ng-show="withsearch" layout-align="center center"></search-bar>
+        <search-bar flex="80" flex-gt-xs="80" ng-show="withsearch" layout-align="center center"></search-bar>
         <div flex="5" flex-gt-md="10"></div>
     </div>
+
+    <!--Show this if on desktop-->
+    <div class="md-toolbar-tools" layout-align="center center" ng-show="$root.bigScreen">
+        <div flex="5" flex-gt-md="10"></div>
+        <search-bar flex="90" flex-gt-md="80" ng-show="withsearch" layout-align="center center"></search-bar>
+        <div flex="5" flex-gt-md="10"></div>
+    </div>
+
 </md-toolbar>

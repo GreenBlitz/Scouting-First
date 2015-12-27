@@ -2,10 +2,6 @@
  * Created by tomer on 12/26/15.
  */
 app.controller('SettingsController', function ($scope, $rootScope, $log) {
-    if ($rootScope.bigScreen) {
-
-    }
-
     if ($rootScope.limitSearch) {
         $rootScope.country = "Israel";
     }

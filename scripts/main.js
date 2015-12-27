@@ -1,4 +1,5 @@
 app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) {
+    $rootScope.bigScreen = true;
     $rootScope.$watch(function () {
             return $mdMedia('gt-sm');
         }, function (big) {

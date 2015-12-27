@@ -6,6 +6,6 @@ app.directive('fab', function ($mdMedia) {
         scope: {
             action: "="
         },
-        templateUrl: $mdMedia('gt-md') ? 'directives/fab/fab_large.html' : 'directives/fab/fab.html'
+        templateUrl: 'directives/fab/fab.html'
     };
 });
