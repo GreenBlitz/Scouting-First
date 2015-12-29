@@ -5,7 +5,7 @@
 }
 
 .add-fab-gt-sm{
-    position: fixed;
+    position: absolute;
     top: 95px;
     right: 2vw;
 }

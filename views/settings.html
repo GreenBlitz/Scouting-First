@@ -21,7 +21,11 @@
             </md-list>
         </md-content>
         <div layout-align="end end" layout="row" style="width: 100%;" flex="100">
-            <md-button class="md-accent md-raised" ng-click="$root.loadData(); $root.changeView($root.buttons[0])">Save</md-button>
+            <div flex="91"></div>
+            <md-button class="md-accent md-raised" flex="5"
+                       ng-click="$root.loadData(); $root.changeView($root.buttons[0])">Save
+            </md-button>
+            <div flex="4"></div>
         </div>
     </md-whiteframe>
 </div>
