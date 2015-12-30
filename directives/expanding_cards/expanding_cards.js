@@ -13,6 +13,12 @@ app.controller('ExpandedCard', function ($scope) {
         }
     }
 );
+/**
+ *
+ * ExpandingCards is a directive
+ * A list of expanding cards
+ * @param objects  the json object of cards that will be shown in the list.
+ */
 app.directive('expandingCards', function () {
     return {
         scope: {
