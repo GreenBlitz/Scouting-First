@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="styles/index.css">
+
+
 </head>
 <body ng-app="ScoutingFirst" ng-controller="MainController">
 
@@ -16,14 +18,16 @@
     <side-nav buttons="buttons"></side-nav>
 
     <div class="body" layout="row" layout-align="center center" ng-include="view">
-
     </div>
 </div>
+
+
 <fab></fab>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-aria/angular-aria.min.js"></script>
 <script src="bower_components/angular-animate/angular-animate.min.js"></script>
 <script src="bower_components/angular-material/angular-material.min.js"></script>
+<script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
 <script src="scripts/app.js"></script>
 <script src="scripts/main.js"></script>
 <script src="scripts/controllers/searchPage.js"></script>
@@ -33,5 +37,6 @@
 <script src="directives/header/searchbar.js"></script>
 <script src="directives/fab/fab.js"></script>
 <script src="directives/header/toolbar.js"></script>
+<script src="directives/expanding_cards/expanding_cards.js"></script>
 </body>
 </html>

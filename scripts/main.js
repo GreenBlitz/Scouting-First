@@ -1,6 +1,16 @@
 app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) {
-    $rootScope.bigScreen = true;
-    $rootScope.$watch(function () {
+        $rootScope.bigScreen = true;
+        $scope.objects = [{
+            title: 'Test1',
+            short: 'Short1',
+            view: "views/home.html"
+        },
+            {
+                title: 'Test1',
+                short: 'Short1',
+                view: "views/.html"
+            }];
+        $rootScope.$watch(function () {
             return $mdMedia('gt-sm');
         }, function (big) {
             $rootScope.bigScreen = big;
