@@ -1,10 +1,12 @@
 app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) {
         $rootScope.bigScreen = true;
-        $scope.objects = [{
-            title: 'Test1',
-            short: 'Short1',
-            view: "views/home.html"
-        },
+
+        $scope.objects = [
+            {
+                title: 'Test1',
+                short: 'Short1',
+                view: "views/home.html"
+            },
             {
                 title: 'Test1',
                 short: 'Short1',

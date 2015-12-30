@@ -18,6 +18,7 @@ app.controller('ExpandedCard', function ($scope) {
  * ExpandingCards is a directive
  * A list of expanding cards
  * @param objects  the json object of cards that will be shown in the list.
+ * Every 'object' should contain 'title' the title of the card, 'short' short text to show when the card is closed, 'view' the html view to show when the card is open
  */
 app.directive('expandingCards', function () {
     return {
