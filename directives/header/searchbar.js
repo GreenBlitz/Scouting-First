@@ -14,6 +14,7 @@ app.controller('SearchController', function ($scope, $rootScope, $http, $filter)
     $scope.search = function (button) {
         $rootScope.searched = $scope.selectedItem;
         console.log($rootScope.searched);
+        $rootScope.loadMatches($rootScope.searched.team_number);
         $rootScope.changeView(button);
         $rootScope.toggleSideNav()
     }

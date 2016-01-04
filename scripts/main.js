@@ -2,16 +2,16 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
         $rootScope.bigScreen = true;
 
         $scope.objects = [
-            {
-                title: 'Test1',
-                short: 'Short1',
-                view: "views/home.html"
-            },
-            {
-                title: 'Test1',
-                short: 'Short1',
-                view: "views/.html"
-            }];
+        {
+            title: $rootScope.list,
+            short: 'Short1',
+            view: "views/home.html"
+        },
+        {
+            title: 'Test1',
+            short: 'Short1',
+            view: "views/.html"
+        }];
         $rootScope.$watch(function () {
             return $mdMedia('gt-sm');
         }, function (big) {
@@ -81,12 +81,45 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                 // or server returns response with an error status.
             });
         };
+        $rootScope.loadMatches = function (team) {
+            list = [""];
+            $http({
+                method: 'GET',
+                url: 'http://www.thebluealliance.com/api/v2/event/2015ista/matches',
+                headers: {
+                    'X-TBA-App-Id': 'greenblitz:scouting-system:v01'
+                }
+            }).then(function successCallback(response) {
+                list = [];
+                for (var i = 0; i < response.data.length; i++) {
+                    if(response.data[i].alliances.blue.teams.includes("frc"+team)||response.data[i].alliances.red.teams.includes("frc"+team)) {
+                        list.push(response.data[i]);
+                    }
+                }
+                $scope.objects = [];
+                for(var i = 0; i<list.length; i++){
+                    match = list[i];
+                    $scope.objects.push({
+                        title: "Red "+match.alliances.red.score+" - Blue "+match.alliances.blue.score,
+                        short: "Match no."+match.match_number,
+                        view: "view/.html"
+                    });
+                }
+                console.log(list);
+            }, function errorCallback(response) {
+                return response;
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+        };
         $rootScope.loadData = function () {
             $scope.teams = null;
             $rootScope.teams = null;
             for (var i = 0; i < 12; i++) {
                 $rootScope.loadAll(i)
             }
+            $rootScope.loadMatches(4590);
         }
         ;
         $rootScope.loadData();
@@ -96,6 +129,5 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                 arr2.push(arr1[i])
             }
         }
-
     }
 );

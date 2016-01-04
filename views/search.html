@@ -1,5 +1,5 @@
 
-<div layout="column" layout-align="center center" ng-show="{{$root.searched != null}}"
+<div style="width:2000px; height:500px;" layout="column" layout-align="center center" ng-show="{{$root.searched != null}}"
      ng-controller="SearchPageController">
     <h2>{{$root.searched.name}} #{{$root.searched.team_number}}</h2>
     <h2 ng-show="{{$root.searched.name != $root.searched.nickname}}">NickName: {{$root.searched.nickname == null ?
@@ -11,4 +11,5 @@
     <h2>Website: <a href="{{$root.searched.website}}">{{$root.searched.website == null ? 'N/A' :
         $root.searched.website}}</a></h2>
     <h2 ng-show="{{$root.searched.motto != null}}">Motto: {{$root.searched.motto}}</h2>
+    <expanding-cards style="width: 100%;height: 80%" objects="objects"></expanding-cards>
 </div>
