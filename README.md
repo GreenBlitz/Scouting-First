@@ -5,4 +5,6 @@ Built for [GreenBlitz #4590](http://www.facebook.com/greenblitz4590/).
 
 Due to Javascript issues, it is important to do the test with a Localhost server.
 
-[Webstorm by Jetbrains](https://www.jetbrains.com/webstorm/) is recommended for solving that problem.
+[Webstorm by JetBrains](https://www.jetbrains.com/webstorm/) is recommended for solving that problem.
+
+![892154_364910866956383_2115012026_o.png](https://bitbucket.org/repo/M4z9gj/images/4153447662-892154_364910866956383_2115012026_o.png)
