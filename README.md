@@ -1,4 +1,4 @@
-**## Scouting for GreenBlitz**
+### **Scouting for GreenBlitz** ###
 
 Scouting site project for the FIRST Robotics Competition,
 Built for [GreenBlitz #4590](http://www.facebook.com/greenblitz4590/).
