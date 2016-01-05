@@ -1,0 +1,14 @@
+<div layout="row" layout-wrap layout-fill ng-cloak layout-align="center"
+     ng-controller="FormPage">
+    <md-whiteframe class="md-whiteframe-12dp" ng-class="{big_settings_wrapper : $root.bigScreen}" flex-xs="100"
+                   flex-sm="100" flex-gt-sm="90" flex-gt-md="80">
+        <md-content layout="column" layout-padding="">
+            <edit-text holder="$root.country" identifier="123" title="$root.country"></edit-text>
+            <date-picker holder="$root.country" identifier="12321"></date-picker>
+            <check-box title="$root.country" identifier="4"></check-box>
+            <radio-group radios="myRadios" identifier="9"></radio-group>
+            <spinner options="myRadios" title="$root.country" identifier="6766"></spinner>
+            <switch title="$root.country" identifier="22"></switch>
+        </md-content>
+    </md-whiteframe>
+</div>

@@ -1,0 +1,12 @@
+<div layout="column" layout-align="center center" ng-show="{{$root.searched != null}}"
+     ng-controller="SearchPageController">
+    <h2>Team name: {{$root.searched.name}}</h2>
+    <h2 ng-show="{{$root.searched.name != $root.searched.nickname}}">NickName: {{$root.searched.nickname == null ?
+        'N/A'
+        : $root.searched.nickname}}</h2>
+    <h2>Team number: #{{$root.searched.team_number}}</h2>
+    <h2>Team region: {{$root.searched.country_name}} {{$root.searched.region}}, {{$root.searched.locality}}</h2>
+    <h2>Website: <a href="{{$root.searched.website}}">{{$root.searched.website == null ? 'N/A' :
+        $root.searched.website}}</a></h2>
+    <h2 ng-show="{{$root.searched.motto != null}}">Motto: {{$root.searched.motto}}</h2>
+</div>

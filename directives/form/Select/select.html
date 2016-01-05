@@ -1,0 +1,7 @@
+<md-input-container>
+    <label>{{title}}</label>
+    <md-select ng-model="$root.idHolder[identifier]">
+        <md-option ng-repeat="option in options" value="{{option}}">{{option}}</md-option>
+    </md-select>
+</md-input-container>
+{{$root.idHolder[identifier]}}
