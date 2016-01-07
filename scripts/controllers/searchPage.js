@@ -5,4 +5,7 @@ app.controller('SearchPageController', function ($scope, $rootScope) {
     if ($rootScope.searched == null) {
         $rootScope.changeView($rootScope.buttons[0]);
     }
+    $scope.colors = true;
+    $scope.showshort = false;
 });
+

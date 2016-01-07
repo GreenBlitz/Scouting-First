@@ -23,7 +23,9 @@ app.controller('ExpandedCard', function ($scope) {
 app.directive('expandingCards', function () {
     return {
         scope: {
-            objects: "="
+            objects: "=",
+            colors: "=",
+            showshort: "="
         },
         templateUrl: 'directives/expanding_cards/expanding_cards.html'
     };

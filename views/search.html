@@ -1,12 +1,23 @@
-<div layout="column" layout-align="center center" ng-show="{{$root.searched != null}}"
+<div layout="row" layout-align="center center" ng-show="{{$root.searched != null}}"
      ng-controller="SearchPageController">
-    <h2>Team name: {{$root.searched.name}}</h2>
-    <h2 ng-show="{{$root.searched.name != $root.searched.nickname}}">NickName: {{$root.searched.nickname == null ?
-        'N/A'
-        : $root.searched.nickname}}</h2>
-    <h2>Team number: #{{$root.searched.team_number}}</h2>
-    <h2>Team region: {{$root.searched.country_name}} {{$root.searched.region}}, {{$root.searched.locality}}</h2>
-    <h2>Website: <a href="{{$root.searched.website}}">{{$root.searched.website == null ? 'N/A' :
-        $root.searched.website}}</a></h2>
-    <h2 ng-show="{{$root.searched.motto != null}}">Motto: {{$root.searched.motto}}</h2>
+    <div align="center" >
+        <h2>{{$root.searched.name}} #{{$root.searched.team_number}}</h2>
+        <h2 ng-show="{{$root.searched.name != $root.searched.nickname}}">NickName: {{$root.searched.nickname == null ?
+            'N/A'
+            : $root.searched.nickname}}</h2>
+        <!--h2>Team number: #{{$root.searched.team_number}}</h2-->
+
+        <h2>From: {{$root.searched.locality}}, {{$root.searched.region}}, {{$root.searched.country_name}}</h2>
+        <h2>Website: <a href="{{$root.searched.website}}">{{$root.searched.website == null ? 'N/A' :
+            $root.searched.website}}</a></h2>
+        <h2 ng-show="{{$root.searched.motto != null}}">Motto: {{$root.searched.motto}}</h2>
+        <h3>{{$root.searched.name}} #{{$root.searched.team_number}} is on the {{$root.teamrank}} place.</h3>
+        <h3>Average: {{$root.teamavg}}</h3>
+    </div>
+    <expanding-cards ng-show="$root.teamavg!='(Loading)'"
+                     style="overflow-y: scroll; width:100%; max-height: 40vh;min-width: 20vw;"
+                     objects="objects"
+                     colors="colors"
+                     showshort="showshort"></expanding-cards>
+    <h3 ng-show="$root.teamavg=='(Loading)'">Loading matches...</h3>
 </div>

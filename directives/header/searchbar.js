@@ -13,7 +13,12 @@ app.controller('SearchController', function ($scope, $rootScope, $http, $filter)
 
     $scope.search = function (button) {
         $rootScope.searched = $scope.selectedItem;
+        $rootScope.teamrank = "(Loading)";
+        $rootScope.teamavg = "(Loading)";
+        $rootScope.objects = [];
         console.log($rootScope.searched);
+        $rootScope.loadMatches($rootScope.searched.team_number);
+        $rootScope.loadRank($rootScope.searched.team_number);
         $rootScope.changeView(button);
         $rootScope.toggleSideNav()
     }

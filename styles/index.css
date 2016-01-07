@@ -58,3 +58,17 @@ body {
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
+/*CSS for cards of scores*/
+
+.red{
+    color:red;
+}
+
+.blue{
+    color:blue;
+}
+
+.bold{
+    font: bold 100% Arial;
+}
