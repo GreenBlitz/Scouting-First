@@ -1,0 +1,17 @@
+<div ng-show=" $index == selectedUserIndex">
+    <!--Match Number: {{item.details.match_number}}-->
+    <div layout="row">
+    <div flex="50" align="center">
+            <h4 class="red bold">Red</h4>
+            <div class="red" ng-class="{'bold' : item.details.alliances.red.teams[0] == $root.frcteam}">{{item.details.alliances.red.teams[0]}}</div>
+            <div class="red" ng-class="{'bold' : item.details.alliances.red.teams[1] == $root.frcteam}">{{item.details.alliances.red.teams[1]}}</div>
+            <div class="red" ng-class="{'bold' : item.details.alliances.red.teams[2] == $root.frcteam}">{{item.details.alliances.red.teams[2]}}</div>
+    </div>
+    <div flex="50" align="center">
+            <h4 class="blue bold">Blue</h4>
+            <div class="blue" ng-class="{'bold' : item.details.alliances.blue.teams[0] == $root.frcteam}">{{item.details.alliances.blue.teams[0]}}</div>
+            <div class="blue" ng-class="{'bold' : item.details.alliances.blue.teams[1] == $root.frcteam}">{{item.details.alliances.blue.teams[1]}}</div>
+            <div class="blue" ng-class="{'bold' : item.details.alliances.blue.teams[2] == $root.frcteam}">{{item.details.alliances.blue.teams[2]}}</div>
+    </div>
+    </div>
+</div>

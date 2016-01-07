@@ -1,21 +1,27 @@
 <link rel="stylesheet" href="directives/expanding_cards/expanding_cards.css">
 <md-content layout="row" flex layout-align="center" layout-fill ng-controller="ExpandedCard">
-    <div flex="70" class="content" ui-view>
+    <div flex="70">
         <md-item ng-repeat="item in objects" class="item"
                  ng-class="{ 'selected-item': $index == selectedUserIndex}">
             <md-item-content class="user tile md-whiteframe-z1"
                              ng-class="{ 'selected md-whiteframe-z2': $index == selectedUserIndex}"
                              layout="column">
-                <div layout="row" layout-fill ng-click="selectUserIndex($index)" class="folded">
-                    <div class="md-tile-content" layout="column" layout-align="center start">
-                        <h3>{{item.title}}</h3>
-                        <p ng-show="$index != selectedUserIndex">
+                <div style="outline:none;" layout="row" layout-fill ng-click="selectUserIndex($index)" class="folded">
+                    <div class="md-tile-content" layout="column" layout-align="center center" flex="100">
+                        <h3 ng-show="!colors">{{item.title}}</h3>
+                        <div ng-show="colors" layout="column" flex="100" layout-align="center center">
+                            <h3>Match {{item.details.comp_level}}{{item.details.match_number}}:</h3>
+                        <div layout="row">
+                            <h3 class="red">{{item.RedScore}}</h3><h3> -    </h3><h3 class="blue">{{item.BlueScore}}</h3>
+                        </div>
+                        </div>
+                        <p ng-show="$index != selectedUserIndex && showshort">
                             <span>{{item.short}}</span>
                         </p>
                     </div>
                 </div>
                 <md-divider layout-fill ng-show="$index == selectedUserIndex"></md-divider>
-                <div layout="column" layout-fill class="expanded" ng-include="item.view">
+                <div layout="column" layout-fill class="expanded" ng-include="item.view" style="overflow-y: hidden">
 
                 </div>
             </md-item-content>
