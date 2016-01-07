@@ -100,6 +100,5 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                 arr2.push(arr1[i])
             }
         }
-
     }
 );
