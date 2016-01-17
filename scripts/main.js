@@ -95,8 +95,11 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
             }).then(function successCallback(response) {
                 $rootScope.ranksFirst = [];
                 $rootScope.ranksLast = [];
+                var halfSize = response.data.length % 2 === 0 ?
+                    response.data.length / 2 :
+                    (response.data.length - 1) / 2;
                 for (var i = 1; i < response.data.length; i++) {
-                    if (i<26){
+                    if (i < halfSize){
                     $rootScope.ranksFirst[i] = {
                         index: response.data[i][0],
                         team: response.data[i][1],
@@ -104,12 +107,24 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                     };
                     }
                     else{
-                        $rootScope.ranksLast[i] = {
+                        $rootScope.ranksLast[i -  halfSize] = {
                             index: response.data[i][0],
                             team: response.data[i][1],
                             average: response.data[i][2]
                         };
                     }
+                }
+                if (response.data.length % 2 !== 0) {
+                    $rootScope.ranksFirst[halfSize] = {
+                        index: "1",
+                        team: "1",
+                        average: "1"
+                    };
+                    $rootScope.ranksLast[halfSize] = {
+                        index: response.data[response.data.length - 1][0],
+                        team: response.data[response.data.length - 1][1],
+                        average: response.data[response.data.length - 1][2]
+                    };
                 }
             })
         };

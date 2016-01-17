@@ -13,4 +13,8 @@ var app = angular.module('ScoutingFirst', ['ngMaterial']).config(function ($mdTh
          .primaryPalette('primary')
          .accentPalette('accent')
     }
-);
+).filter("stripFRC", function() {
+    return function(x) {
+        return x.substring(3);
+    };
+});

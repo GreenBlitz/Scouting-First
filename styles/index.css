@@ -59,6 +59,9 @@ body {
     margin-top: 20px;
 }
 
+.transparent{
+    color: transparent;
+}
 /*CSS for cards of scores*/
 
 .red{

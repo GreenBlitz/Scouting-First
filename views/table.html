@@ -4,9 +4,22 @@
         <tr>
             <th>Rank</th>
             <th>Team Number</th>
-            <th>Quals. Average</th>
+            <th>Qualification Average</th>
         </tr>
         <tr align="center" ng-repeat="rank in $root.ranksFirst">
+            <td>{{rank.index}}</td>
+            <td>{{rank.team}}</td>
+            <td>{{rank.average}}</td>
+        </tr>
+    </table>
+    <div style="border-left:1px solid #000;height:500px"></div>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Team Number</th>
+            <th>Qualification Average</th>
+        </tr>
+        <tr align="center" ng-repeat="rank in $root.ranksLast">
             <td>{{rank.index}}</td>
             <td>{{rank.team}}</td>
             <td>{{rank.average}}</td>
