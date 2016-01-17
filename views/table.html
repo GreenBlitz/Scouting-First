@@ -1,0 +1,15 @@
+<div layout="row" layout-wrap layout-fill ng-cloak layout-align="center center"
+     ng-controller="TablePageController">
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Team Number</th>
+            <th>Quals. Average</th>
+        </tr>
+        <tr align="center" ng-repeat="rank in $root.ranksFirst">
+            <td>{{rank.index}}</td>
+            <td>{{rank.team}}</td>
+            <td>{{rank.average}}</td>
+        </tr>
+    </table>
+</div>

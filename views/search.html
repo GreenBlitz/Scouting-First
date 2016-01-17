@@ -1,16 +1,16 @@
-<div layout="row" layout-align="center center" ng-show="{{$root.searched != null}}"
+<div layout="row" layout-align="center center" ng-show="$root.searched != null"
      ng-controller="SearchPageController">
     <div align="center" >
         <h2>{{$root.searched.name}} #{{$root.searched.team_number}}</h2>
-        <h2 ng-show="{{$root.searched.name != $root.searched.nickname}}">NickName: {{$root.searched.nickname == null ?
+        <h2 ng-show="$root.searched.name != $root.searched.nickname">NickName: {{$root.searched.nickname == null ?
             'N/A'
             : $root.searched.nickname}}</h2>
         <!--h2>Team number: #{{$root.searched.team_number}}</h2-->
 
         <h2>From: {{$root.searched.locality}}, {{$root.searched.region}}, {{$root.searched.country_name}}</h2>
         <h2>Website: <a href="{{$root.searched.website}}">{{$root.searched.website == null ? 'N/A' :
-            $root.searched.website}}</a></h2>
-        <h2 ng-show="{{$root.searched.motto != null}}">Motto: {{$root.searched.motto}}</h2>
+            "Click Here"}}</a></h2>
+        <h2 ng-show="$root.searched.motto != null">Motto: {{$root.searched.motto}}</h2>
         <h3>{{$root.searched.name}} #{{$root.searched.team_number}} is on the {{$root.teamrank}} place.</h3>
         <h3>Average: {{$root.teamavg}}</h3>
     </div>

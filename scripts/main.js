@@ -85,8 +85,35 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                 // or server returns response with an error status.
             });
         };
-
-        $rootScope.loadRank = function (team) {
+        $rootScope.loadAllRanks = function () {
+            $http({
+                method: 'GET',
+                url: 'http://www.thebluealliance.com/api/v2/event/2015ista/rankings',
+                headers: {
+                    'X-TBA-App-Id': 'greenblitz:scouting-system:v01'
+                }
+            }).then(function successCallback(response) {
+                $rootScope.ranksFirst = [];
+                $rootScope.ranksLast = [];
+                for (var i = 1; i < response.data.length; i++) {
+                    if (i<26){
+                    $rootScope.ranksFirst[i] = {
+                        index: response.data[i][0],
+                        team: response.data[i][1],
+                        average: response.data[i][2]
+                    };
+                    }
+                    else{
+                        $rootScope.ranksLast[i] = {
+                            index: response.data[i][0],
+                            team: response.data[i][1],
+                            average: response.data[i][2]
+                        };
+                    }
+                }
+            })
+        };
+        $rootScope.loadRankForTeam = function (team) {
             $http({
                 method: 'GET',
                 url: 'http://www.thebluealliance.com/api/v2/event/2015ista/rankings',

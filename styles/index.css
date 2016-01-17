@@ -72,3 +72,7 @@ body {
 .bold{
     font: bold 100% Arial;
 }
+
+.winner{
+    text-decoration: underline;
+}
