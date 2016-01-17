@@ -76,6 +76,10 @@ body {
     font: bold 100% Arial;
 }
 
-.winner{
+.mine{
     text-decoration: underline;
+}
+
+.winner{
+    font-style: italic;
 }

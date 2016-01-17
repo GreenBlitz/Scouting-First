@@ -249,5 +249,13 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                 }
             } while (swapped);
         }
+        $rootScope.checkIfTeamInAlliance = function(alliance, frcteam){
+            for (var i = 0; i<alliance.teams.length;i++){
+                if(alliance.teams[i]==frcteam){
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 );

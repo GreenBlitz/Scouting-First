@@ -1,13 +1,15 @@
-<div layout="row" layout-align="center center" ng-show="$root.searched != null"
+<div align="center" layout-align="center center" ng-show="$root.searched != null"
      ng-controller="SearchPageController">
+    <h1>{{$root.searched.name}} <b>#{{$root.searched.team_number}}</b></h1>
+    <h3 ng-show="$root.searched.name != $root.searched.nickname">
+        NickName: {{$root.searched.nickname == null ?
+        'N/A'
+        : $root.searched.nickname}}</h3>
+    <!--h2>Team number: #{{$root.searched.team_number}}</h2-->
+    <hr/>
+    <div layout="row">
     <div align="center" >
-        <h1>{{$root.searched.name}} <b>#{{$root.searched.team_number}}</b></h1>
-        <h3 ng-show="$root.searched.name != $root.searched.nickname">
-            NickName: {{$root.searched.nickname == null ?
-            'N/A'
-            : $root.searched.nickname}}</h3>
-        <!--h2>Team number: #{{$root.searched.team_number}}</h2-->
-        <hr>
+
         <h3><small>From:</small> {{$root.searched.locality}}, {{$root.searched.region}}, {{$root.searched.country_name}}</h3>
         <h3 ng-show="$root.searched.motto != null">Motto: {{$root.searched.motto}}</h3>
         <h4>{{$root.searched.name}} #{{$root.searched.team_number}} is on the <u>{{$root.teamrank}}</u> place.</h4>
@@ -17,9 +19,10 @@
             "Website"}}</a></h3>
     </div>
     <expanding-cards ng-show="$root.teamavg!='(Loading)'"
-                     style="overflow-y: scroll; width:100%; max-height: 40vh;min-width: 20vw;"
+                     style="overflow-y: scroll; width:100%; max-height: 54vh;min-width: 20vw;"
                      objects="objects"
                      colors="colors"
                      showshort="showshort"></expanding-cards>
     <h3 ng-show="$root.teamavg=='(Loading)'">Loading matches...</h3>
+    </div>
 </div>
