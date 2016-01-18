@@ -85,8 +85,50 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                 // or server returns response with an error status.
             });
         };
-
-        $rootScope.loadRank = function (team) {
+        $rootScope.loadAllRanks = function () {
+            $http({
+                method: 'GET',
+                url: 'http://www.thebluealliance.com/api/v2/event/2015ista/rankings',
+                headers: {
+                    'X-TBA-App-Id': 'greenblitz:scouting-system:v01'
+                }
+            }).then(function successCallback(response) {
+                $rootScope.ranksFirst = [];
+                $rootScope.ranksLast = [];
+                var halfSize = response.data.length % 2 === 0 ?
+                    response.data.length / 2 :
+                    (response.data.length - 1) / 2;
+                for (var i = 1; i < response.data.length; i++) {
+                    if (i < halfSize){
+                    $rootScope.ranksFirst[i] = {
+                        index: response.data[i][0],
+                        team: response.data[i][1],
+                        average: response.data[i][2]
+                    };
+                    }
+                    else{
+                        $rootScope.ranksLast[i -  halfSize] = {
+                            index: response.data[i][0],
+                            team: response.data[i][1],
+                            average: response.data[i][2]
+                        };
+                    }
+                }
+                if (response.data.length % 2 !== 0) {
+                    $rootScope.ranksFirst[halfSize] = {
+                        index: "1",
+                        team: "1",
+                        average: "1"
+                    };
+                    $rootScope.ranksLast[halfSize] = {
+                        index: response.data[response.data.length - 1][0],
+                        team: response.data[response.data.length - 1][1],
+                        average: response.data[response.data.length - 1][2]
+                    };
+                }
+            })
+        };
+        $rootScope.loadRankForTeam = function (team) {
             $http({
                 method: 'GET',
                 url: 'http://www.thebluealliance.com/api/v2/event/2015ista/rankings',
@@ -206,6 +248,14 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                     }
                 }
             } while (swapped);
+        }
+        $rootScope.checkIfTeamInAlliance = function(alliance, frcteam){
+            for (var i = 0; i<alliance.teams.length;i++){
+                if(alliance.teams[i]==frcteam){
+                    return true;
+                }
+            }
+            return false;
         }
     }
 );

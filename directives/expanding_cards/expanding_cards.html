@@ -10,10 +10,17 @@
                     <div class="md-tile-content" layout="column" layout-align="center center" flex="100">
                         <h3 ng-show="!colors">{{item.title}}</h3>
                         <div ng-show="colors" layout="column" flex="100" layout-align="center center">
-                            <h3>Match {{item.details.comp_level}}{{item.details.match_number}}:</h3>
-                        <div layout="row">
-                            <h3 class="red">{{item.RedScore}}</h3><h3> -    </h3><h3 class="blue">{{item.BlueScore}}</h3>
-                        </div>
+                            <h3>Match {{item.details.comp_level.toUpperCase()}}{{item.details.match_number}}:</h3>
+                            <div ng-show="$root.checkIfTeamInAlliance(item.details.alliances.red,$root.frcteam)" layout="row">
+                                <h3 ng-class="{ 'winner': item.BlueScore<item.RedScore}" class="red mine">{{item.RedScore}}</h3>
+                                <h3> - </h3>
+                                <h3 ng-class="{ 'winner': item.BlueScore>item.RedScore}" class="blue">{{item.BlueScore}}</h3>
+                            </div>
+                            <div ng-show="$root.checkIfTeamInAlliance(item.details.alliances.blue,$root.frcteam)" layout="row">
+                                <h3 ng-class="{ 'winner': item.BlueScore<item.RedScore}" class="red">{{item.RedScore}}</h3>
+                                <h3> - </h3>
+                                <h3 ng-class="{ 'winner': item.BlueScore>item.RedScore}" class="blue mine">{{item.BlueScore}}</h3>
+                            </div>
                         </div>
                         <p ng-show="$index != selectedUserIndex && showshort">
                             <span>{{item.short}}</span>

@@ -59,6 +59,9 @@ body {
     margin-top: 20px;
 }
 
+.transparent{
+    color: transparent;
+}
 /*CSS for cards of scores*/
 
 .red{
@@ -71,4 +74,12 @@ body {
 
 .bold{
     font: bold 100% Arial;
+}
+
+.mine{
+    text-decoration: underline;
+}
+
+.winner{
+    font-style: italic;
 }
