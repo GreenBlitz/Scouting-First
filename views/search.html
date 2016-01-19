@@ -1,28 +1,57 @@
-<div align="center" layout-align="center center" ng-show="$root.searched != null"
+<div layout="row" layout-wrap layout-fill ng-cloak layout-align="center" ng-show="$root.searched != null"
      ng-controller="SearchPageController">
-    <h1>{{$root.searched.name}} <b>#{{$root.searched.team_number}}</b></h1>
-    <h3 ng-show="$root.searched.name != $root.searched.nickname">
-        NickName: {{$root.searched.nickname == null ?
-        'N/A'
-        : $root.searched.nickname}}</h3>
-    <!--h2>Team number: #{{$root.searched.team_number}}</h2-->
-    <hr/>
-    <div layout="row">
-    <div align="center" >
-
-        <h3><small>From:</small> {{$root.searched.locality}}, {{$root.searched.region}}, {{$root.searched.country_name}}</h3>
-        <h3 ng-show="$root.searched.motto != null">Motto: {{$root.searched.motto}}</h3>
-        <h4>{{$root.searched.name}} #{{$root.searched.team_number}} is on the <u>{{$root.teamrank}}</u> place.</h4>
-        <h4><small>Average:</small> {{$root.teamavg}}</h4>
-
-        <h3><a href="{{$root.searched.website}}">{{$root.searched.website == null ? "No Website" :
-            "Website"}}</a></h3>
-    </div>
-    <expanding-cards ng-show="$root.teamavg!='(Loading)'"
-                     style="overflow-y: scroll; width:100%; max-height: 54vh;min-width: 20vw;"
-                     objects="objects"
-                     colors="colors"
-                     showshort="showshort"></expanding-cards>
-    <h3 ng-show="$root.teamavg=='(Loading)'">Loading matches...</h3>
-    </div>
+    <md-whiteframe layout="row" layout-align="center" class="md-whiteframe-12dp"
+                   ng-class="{big_settings_wrapper : $root.bigScreen}" flex-xs="100"
+                   flex-sm="100" flex-gt-sm="90" flex-gt-md="80" style="padding: 5vw">
+        <md-content flex="100">
+            <h1 align="center">{{$root.searched.name}} <b>#{{$root.searched.team_number}}</b></h1>
+            <h3 ng-show="$root.searched.name != $root.searched.nickname">
+                NickName: {{$root.searched.nickname == null ?
+                'N/A'
+                : $root.searched.nickname}}</h3>
+            <!--h2>Team number: #{{$root.searched.team_number}}</h2-->
+            <hr/>
+            <div layout="row">
+                <div flex="50">
+                    <md-list ng-cloak>
+                        <md-subheader class="md-no-sticky">Team Info</md-subheader>
+                        <md-list-item>
+                            <p>From</p>
+                            <h3 align="center" class="md-secondary">{{$root.searched.locality}},
+                                {{$root.searched.region}},
+                                {{$root.searched.country_name}}</h3>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-list-item>
+                            <p>Rank</p>
+                            <h3 class="md-secondary">{{$root.teamrank}}</h3>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-list-item ng-show="$root.searched.motto != null">
+                            <p>Motto</p>
+                            <h3 class="md-secondary">{{$root.searched.motto}}</h3>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-list-item>
+                            <p>Average</p>
+                            <h3 class="md-secondary">{{$root.teamavg}}</h3>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-list-item>
+                            <p>Website</p>
+                            <h3 class="md-secondary"><a href="{{$root.searched.website}}">{{$root.searched.website ==
+                                null ? "No Website" :
+                                "Website"}}</a></h3>
+                        </md-list-item>
+                    </md-list>
+                </div>
+                <expanding-cards flex="50" ng-show="$root.teamavg!='(Loading)'"
+                                 style="overflow-y: scroll; width:100%; max-height: 54vh;min-width: 20vw;"
+                                 objects="objects"
+                                 colors="colors"
+                                 showshort="showshort"></expanding-cards>
+                <h3 ng-show="$root.teamavg=='(Loading)'">Loading matches...</h3>
+            </div>
+        </md-content>
+    </md-whiteframe>
 </div>
