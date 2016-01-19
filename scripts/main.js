@@ -1,17 +1,6 @@
-app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) {
+app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, $log) {
         $rootScope.bigScreen = true;
         $rootScope.idHolder = {};
-        $scope.objects = [
-            {
-                title: 'Test1',
-                short: 'Short1',
-                view: "views/home.html"
-            },
-            {
-                title: 'Test1',
-                short: 'Short1',
-                view: "views/.html"
-            }];
         $rootScope.$watch(function () {
             return $mdMedia('gt-sm');
         }, function (big) {
@@ -48,7 +37,7 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
         ];
         $rootScope.country = "Israel";
         $rootScope.limitSearch = true;
-        $rootScope.view = "views/" + $scope.buttons[0].view + ".html";
+        $rootScope.view = "views/home.html";
         $rootScope.isStringEmpty = function (string) {
             return string == null || !string || 0 === string.length
         };
@@ -62,16 +51,18 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                     'X-TBA-App-Id': 'greenblitz:scouting-system:v01'
                 }
             }).then(function successCallback(response) {
+                var tempRemoves;
                 for (var i = 0; i < response.data.length; i++) {
 
                     if (!$rootScope.isStringEmpty(response.data[i].nickname)) {
                         response.data[i].name = response.data[i].nickname;
                     }
                     if ($rootScope.isStringEmpty(response.data[i].name)) {
-                        console.log("remove " + i);
+                        tempRemoves += " , " + i;
                         response.data.splice(i, 1);
                     }
                 }
+                $log.info((tempRemoves != null ? "Removed teams at indexes " + tempRemoves + "\n for index " : "No teams removed for " ) + index);
                 if ($scope.teams == null) {
                     $scope.teams = response.data
                 }
@@ -96,18 +87,18 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                 $rootScope.ranksFirst = [];
                 $rootScope.ranksLast = [];
                 var halfSize = response.data.length % 2 === 0 ?
-                    response.data.length / 2 :
-                    (response.data.length - 1) / 2;
+                response.data.length / 2 :
+                (response.data.length - 1) / 2;
                 for (var i = 1; i < response.data.length; i++) {
-                    if (i < halfSize){
-                    $rootScope.ranksFirst[i] = {
-                        index: response.data[i][0],
-                        team: response.data[i][1],
-                        average: response.data[i][2]
-                    };
+                    if (i < halfSize) {
+                        $rootScope.ranksFirst[i] = {
+                            index: response.data[i][0],
+                            team: response.data[i][1],
+                            average: response.data[i][2]
+                        };
                     }
-                    else{
-                        $rootScope.ranksLast[i -  halfSize] = {
+                    else {
+                        $rootScope.ranksLast[i - halfSize] = {
                             index: response.data[i][0],
                             team: response.data[i][1],
                             average: response.data[i][2]
@@ -211,7 +202,6 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                 }
                 $rootScope.frcteam = "frc" + team;
                 $rootScope.team = team;
-                console.log(list);
             }, function errorCallback(response) {
                 return response;
                 // called asynchronously if an error occurs
@@ -249,13 +239,16 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia) 
                 }
             } while (swapped);
         }
-        $rootScope.checkIfTeamInAlliance = function(alliance, frcteam){
-            for (var i = 0; i<alliance.teams.length;i++){
-                if(alliance.teams[i]==frcteam){
-                    return true;
+
+        $rootScope.checkIfTeamInAlliance = function (alliance, frcteam) {
+            if (alliance != undefined) {
+                for (var i = 0; i < alliance.teams.length; i++) {
+                    if (alliance.teams[i] == frcteam) {
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;
         }
     }
 );
