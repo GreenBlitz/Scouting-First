@@ -4,7 +4,8 @@ app.directive('editText', function () {
             identifier: "=",
             title: "=",
             holder: "=",
-            type: "="
+            type: "=",
+            def: "="
         },
         templateUrl: 'directives/form/EditText/edit_text.html'
     };
