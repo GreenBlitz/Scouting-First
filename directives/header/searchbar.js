@@ -11,6 +11,10 @@ app.controller('SearchController', function ($scope, $rootScope, $http, $filter)
         return $rootScope.isStringEmpty(item.nickname) ? item.name : item.name
     };
 
+    $rootScope.setItem = function (team) {
+        $scope.selectedItem = team;
+    };
+
     $scope.search = function (button) {
         if ($scope.selectedItem != null) {
             $rootScope.searched = $scope.selectedItem;

@@ -1,4 +1,4 @@
-app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, $log) {
+app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, $log, $filter) {
         $rootScope.bigScreen = true;
         $rootScope.idHolder = {};
         $rootScope.$watch(function () {
@@ -72,7 +72,7 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
                 else {
                     addArrayTo(response.data, $scope.teams)
                 }
-                $rootScope.teams = $scope.teams
+                $rootScope.teams = $scope.teams;
                 teamsLoaded++;
                 if (teamsLoaded > 10)
                     loading(false)
@@ -82,8 +82,9 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
                 // or server returns response with an error status.
             });
         };
+        $rootScope.ranksFirst = [];
         $rootScope.loadAllRanks = function () {
-            loading(true)
+            loading(true);
             $http({
                 method: 'GET',
                 url: 'http://www.thebluealliance.com/api/v2/event/2015ista/rankings',
@@ -91,44 +92,21 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
                     'X-TBA-App-Id': 'greenblitz:scouting-system:v01'
                 }
             }).then(function successCallback(response) {
+                loading(true);
                 $rootScope.ranksFirst = [];
-                $rootScope.ranksLast = [];
-                var halfSize = response.data.length % 2 === 0 ?
-                response.data.length / 2 :
-                (response.data.length - 1) / 2;
                 for (var i = 1; i < response.data.length; i++) {
-                    if (i < halfSize) {
-                        $rootScope.ranksFirst[i] = {
-                            index: response.data[i][0],
-                            team: response.data[i][1],
-                            average: response.data[i][2]
-                        };
-                    }
-                    else {
-                        $rootScope.ranksLast[i - halfSize] = {
-                            index: response.data[i][0],
-                            team: response.data[i][1],
-                            average: response.data[i][2]
-                        };
-                    }
-                }
-                if (response.data.length % 2 !== 0) {
-                    $rootScope.ranksFirst[halfSize] = {
-                        index: "1",
-                        team: "1",
-                        average: "1"
-                    };
-                    $rootScope.ranksLast[halfSize] = {
-                        index: response.data[response.data.length - 1][0],
-                        team: response.data[response.data.length - 1][1],
-                        average: response.data[response.data.length - 1][2]
+                    var tempTeam = $filter('filter')($rootScope.teams, {team_number: response.data[i][1]})[0];
+                    $rootScope.ranksFirst[i] = {
+                        index: response.data[i][0],
+                        team: "#" + response.data[i][1] + (tempTeam == undefined ? "" : " - " + tempTeam.name),
+                        average: response.data[i][2]
                     };
                 }
                 loading(false)
             })
         };
         $rootScope.loadRankForTeam = function (team) {
-            loading(true)
+            loading(true);
             $http({
                 method: 'GET',
                 url: 'http://www.thebluealliance.com/api/v2/event/2015ista/rankings',
