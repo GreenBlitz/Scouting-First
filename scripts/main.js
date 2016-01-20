@@ -6,6 +6,7 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
         }, function (big) {
             $rootScope.bigScreen = big;
         });
+        var teamsLoaded = 0;
         $rootScope.buttons = [
             {
                 name: "Home",
@@ -38,12 +39,14 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
         $rootScope.country = "Israel";
         $rootScope.limitSearch = true;
         $rootScope.view = "views/home.html";
+        $rootScope.loading = true;
         $rootScope.isStringEmpty = function (string) {
             return string == null || !string || 0 === string.length
         };
         $scope.teams = undefined;
 
         $rootScope.loadAll = function (index) {
+            loading(true);
             $http({
                 method: 'GET',
                 url: 'http://www.thebluealliance.com/api/v2/teams/' + index,
@@ -70,6 +73,9 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
                     addArrayTo(response.data, $scope.teams)
                 }
                 $rootScope.teams = $scope.teams
+                teamsLoaded++;
+                if (teamsLoaded > 10)
+                    loading(false)
             }, function errorCallback(response) {
                 return response;
                 // called asynchronously if an error occurs
@@ -77,6 +83,7 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
             });
         };
         $rootScope.loadAllRanks = function () {
+            loading(true)
             $http({
                 method: 'GET',
                 url: 'http://www.thebluealliance.com/api/v2/event/2015ista/rankings',
@@ -117,9 +124,11 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
                         average: response.data[response.data.length - 1][2]
                     };
                 }
+                loading(false)
             })
         };
         $rootScope.loadRankForTeam = function (team) {
+            loading(true)
             $http({
                 method: 'GET',
                 url: 'http://www.thebluealliance.com/api/v2/event/2015ista/rankings',
@@ -147,9 +156,11 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
                         break;
                     }
                 }
+                loading(false)
             })
         };
         $rootScope.loadMatches = function (team) {
+            loading(true);
             list = [""];
             $http({
                 method: 'GET',
@@ -209,16 +220,17 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
             });
 
         };
+
         $rootScope.loadData = function () {
+            loading(true);
             $scope.teams = null;
             $rootScope.teams = null;
             for (var i = 0; i < 12; i++) {
                 $rootScope.loadAll(i)
             }
-        }
-        ;
-        $rootScope.loadData();
+        };
 
+        $rootScope.loadData();
         function addArrayTo(arr1, arr2) {
             for (var i = 0; i < arr1.length; i++) {
                 arr2.push(arr1[i])
@@ -249,6 +261,9 @@ app.controller('MainController', function ($scope, $rootScope, $http, $mdMedia, 
                 }
                 return false;
             }
+        };
+        function loading(load) {
+            $rootScope.loading = load;
         }
     }
 );
